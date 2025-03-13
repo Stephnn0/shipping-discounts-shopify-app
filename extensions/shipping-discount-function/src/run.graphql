@@ -1,0 +1,23 @@
+query RunInput {
+  discountNode {
+    metafield(key: "app_discount") {
+      value
+      jsonValue
+      type
+    }
+  }
+
+  cart {
+    cost {
+      totalAmount {
+        amount
+      }
+    }
+    deliveryGroups {
+      deliveryOptions {
+        title
+        handle
+      }
+    }
+  }
+}

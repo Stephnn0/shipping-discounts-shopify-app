@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model ShopifyStore {
+  id        Int   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  shop          String  @unique
+  discountRules DiscountRules[]
+}
+
+model DiscountRules {
+  id        Int   @id   @default(autoincrement())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  ruleEnabled     Boolean           @default(false)
+  automaticOrCode AUTOMATIC_OR_CODE
+  code            String
+
+  discountType   DISCOUNT_TYPE
+  discountAmount String
+
+  shippingRateOption SHIPPING_RATE_OPTION
+  shippingRateName   String?
+
+  startDate  String
+  startTime  String?
+  hasEndDate Boolean @default(false)
+
+  endDate        String?
+  endTime        String?
+
+
+  shop           String?
+  ShopifyStore   ShopifyStore? @relation(fields: [shop], references: [shop], onDelete: Cascade, onUpdate: Cascade)
+}
+
+enum DISCOUNT_TYPE {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+enum AUTOMATIC_OR_CODE {
+  AUTOMATIC
+  CODE
+}
+
+enum SHIPPING_RATE_OPTION {
+  ALL_RATES
+  BY_RATE_NAME
+}

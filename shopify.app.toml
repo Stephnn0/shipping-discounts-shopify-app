@@ -1,0 +1,37 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "7e4a5e51dab6ed9b12f1bce219fce620"
+application_url = "https://shipping-discounts.fly.dev"
+embedded = true
+name = "shipping-discounts"
+handle = "shipping-discounts-14"
+
+[webhooks]
+api_version = "2025-01"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products, write_discounts"
+
+[auth]
+redirect_urls = [
+  "https://shipping-discounts.fly.dev/auth/callback",
+  "https://shipping-discounts.fly.dev/auth/shopify/callback",
+  "https://shipping-discounts.fly.dev/api/auth/callback"
+]
+
+[pos]
+embedded = false
+
+[build]
+dev_store_url = "chuckscom.myshopify.com"
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
