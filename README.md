@@ -1,9 +1,9 @@
 # Shopify Shipping Discounts App
 
-![Main](./img/main.png)
-![Create](./img/create.png)
-![Subs](./img/subs.png)
-![Index](./img/index.png)
+![Main](./public/main.png)
+![Create](./public/create.png)
+![Subs](./public/subs.png)
+![Index](./public/index.png)
 
 
 ## Overview
