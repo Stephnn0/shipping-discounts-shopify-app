@@ -1,5 +1,11 @@
 # Shopify Shipping Discounts App
 
+![Main](./img/main.png)
+![Create](./img/create.png)
+![Subs](./img/subs.png)
+![Index](./img/index.png)
+
+
 ## Overview
 
 This Shopify app, built using Remix and Shopify Functions, allows store owners to create custom shipping discounts for Shopify shipping rates. The app integrates with Shopify's backend to apply discounts based on different conditions and criteria, providing a flexible and dynamic way to manage shipping costs.
